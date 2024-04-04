@@ -1,4 +1,8 @@
 class MarketsService
+  def market_by_id(id)
+    get_url("/api/v0/markets/#{id}")
+  end
+  
   def all_markets
     get_url("/api/v0/markets")
   end
