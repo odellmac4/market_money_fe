@@ -1,4 +1,9 @@
 class MarketsService
+  def market_vendors(id)
+    get_url("/api/v0/markets/#{id}/vendors")
+    # binding.pry
+  end
+  
   def market_by_id(id)
     get_url("/api/v0/markets/#{id}")
   end

@@ -86,4 +86,32 @@ RSpec.describe MarketsService, :vcr do
     expect(market_data[:attributes]).to have_key :vendor_count
     expect(market_data[:attributes][:vendor_count]).to be_an Integer
   end
+
+  it 'returns market vendors' do
+    vendors = @service.market_vendors("322458")
+
+    expect(vendors).to be_a Hash
+    expect(vendors[:data]).to be_an Array
+
+    vendor = vendors[:data].first
+    expect(vendor).to have_key :id
+    expect(vendor).to have_key :attributes
+    expect(vendor[:attributes]).to be_a Hash
+
+    vendor_info = vendor[:attributes]
+    expect(vendor_info).to have_key :name
+    expect(vendor_info[:name]).to be_a String
+
+    expect(vendor_info).to have_key :description
+    expect(vendor_info[:description]).to be_a String
+
+    expect(vendor_info).to have_key :contact_name
+    expect(vendor_info[:contact_name]).to be_a String
+
+    expect(vendor_info).to have_key :contact_phone
+    expect(vendor_info[:contact_phone]).to be_a String
+
+    expect(vendor_info).to have_key :credit_accepted
+    expect(vendor_info[:credit_accepted]).to be_a(TrueClass).or be_a(FalseClass)
+  end
 end
