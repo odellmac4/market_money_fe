@@ -1,0 +1,11 @@
+<center><h1>Markets</h1></center>
+
+
+  <%@facade.markets.each do |market|%>
+  <section class="markets">
+    <p class="name">Name: <%=market.name%></p>
+    <p class="city">City: <%=market.city%></p>
+    <p class="state">State: <%=market.state%></p>
+    <p class="more_info"><%=button_to "More Info", market_path(market.id)%></p>
+  </section>
+  <%end%>
